@@ -1,7 +1,7 @@
 # coding: utf-8
 from sqlalchemy import BigInteger, Boolean, Column, DateTime, Float, ForeignKey, Index, Integer, String, Table, Text, text
 from sqlalchemy.sql.sqltypes import NullType
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 from sqlalchemy.dialects.postgresql.base import ARRAY
 from sqlalchemy.ext.declarative import declarative_base
 from geoalchemy2 import Geometry
@@ -505,7 +505,8 @@ class Localizacao(Base):
     municipio = Column(String(255), nullable=False)
     numero = Column(String(255))
     ocorrencia_id = Column(BigInteger, ForeignKey('ocorrencia.id'))
-    poligono = Column(Geometry('POLYGON'))
+    poligono = Column(Geometry('POINT', 4326))
+    #poligono = Column(Geometry('POINT', 4326))
     referencia = Column(String(255), index=True)
     uf = Column(String(255), nullable=False)
     data_hora_atualizacao = Column(DateTime(True), nullable=False, index=True)
@@ -607,6 +608,11 @@ class Ocorrencia(Base):
     ro = Column(String(255))
     estrutura_id = Column(BigInteger)
     chamada_id = Column(BigInteger)
+    localizacoes = relationship("Localizacao", backref="ocorrencia")
+
+    def localizacao(self):
+        return self.localizacoes[0] if self.localizacoes else None
+
 
     def __str__(self):
         return  self.protocolo.__str__()
