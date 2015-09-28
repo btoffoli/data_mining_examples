@@ -495,22 +495,22 @@ class Localizacao(Base):
     __tablename__ = 'localizacao'
 
     id = Column(BigInteger, primary_key=True, server_default=text("nextval('localizacao_id_seq'::regclass)"))
-    version = Column(BigInteger, nullable=False)
-    bairro = Column(String(255), index=True)
-    cep = Column(String(255))
-    complemento = Column(String(255))
+    # version = Column(BigInteger, nullable=False)
+    # bairro = Column(String(255), index=True)
+    # cep = Column(String(255))
+    # complemento = Column(String(255))
     data_hora_criacao = Column(DateTime(True), nullable=False)
-    habilitado = Column(Boolean, nullable=False)
-    logradouro = Column(String(255))
-    municipio = Column(String(255), nullable=False)
-    numero = Column(String(255))
+    # habilitado = Column(Boolean, nullable=False)
+    # logradouro = Column(String(255))
+    # municipio = Column(String(255), nullable=False)
+    # numero = Column(String(255))
     ocorrencia_id = Column(BigInteger, ForeignKey('ocorrencia.id'))
     poligono = Column(Geometry('POINT', 4326))
     #poligono = Column(Geometry('POINT', 4326))
-    referencia = Column(String(255), index=True)
-    uf = Column(String(255), nullable=False)
+    # referencia = Column(String(255), index=True)
+    # uf = Column(String(255), nullable=False)
     data_hora_atualizacao = Column(DateTime(True), nullable=False, index=True)
-    circunscricao_setor_id = Column(BigInteger)
+    # circunscricao_setor_id = Column(BigInteger)
 
 
 # class Membro(Base):
