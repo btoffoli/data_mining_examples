@@ -19,11 +19,13 @@ def locations():
     engine = create_engine('postgresql://geocontrol:geo007@localhost/tide', echo=True)
     Session = sessionmaker(bind=engine)
     session = Session()
-    a = array([])
-    locations = session.query(Localizacao).filter(Localizacao.poligono != None) .order_by(Localizacao.data_hora_criacao.desc()).slice(0,100).all()
-    for l in locations:
+    #a = array([])
+    a = []
+    locs = session.query(Localizacao).filter(Localizacao.poligono != None) .order_by(Localizacao.data_hora_criacao.desc()).slice(0,100).all()
+    for l in locs:
         pos = convert_point(l.poligono)
-        numpy.append(a, [l.data_hora_criacao, pos.x, pos.y])
+        #numpy.append(a, [l.data_hora_criacao, pos.x, pos.y])
+        a.append([pos.x, pos.y])
 
     return a
 
