@@ -16,7 +16,7 @@ def convert_point(p):
 
 
 def locations():
-    engine = create_engine('postgresql://geocontrol:geo007@localhost/tide', echo=True)
+    engine = create_engine('postgresql://geocontrol:geo007@192.168.1.131/tide', echo=True)
     Session = sessionmaker(bind=engine)
     session = Session()
     #a = array([])
