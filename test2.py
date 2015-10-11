@@ -1,6 +1,5 @@
-__author__ = 'btoffoli'
 
-from pylab import plot,show
+from matplotlib.pylab import plot, show
 from numpy import vstack,array
 from numpy.random import rand
 from scipy.cluster.vq import kmeans,vq
